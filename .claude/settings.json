@@ -4,7 +4,14 @@
       "Bash(git add *)",
       "Bash(git commit -m '[Spec Kit] Add implementation plan *)",
       "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/scripts/powershell/setup-tasks.ps1 -Json)",
-      "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/extensions/git/scripts/powershell/auto-commit.ps1 after_tasks)"
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/extensions/git/scripts/powershell/auto-commit.ps1 after_tasks)",
+      "Bash(git commit -m '[Spec Kit] Add tasks *)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "Bash(npm install *)",
+      "Bash(npx prisma *)",
+      "Bash(docker-compose up *)",
+      "Bash(docker compose *)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/extensions/git/scripts/powershell/auto-commit.ps1 after_implement)"
     ]
   }
 }

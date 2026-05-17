@@ -1,0 +1,143 @@
+// Prisma schema for Room Booking System
+// Based on data-model.md specifications
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User entity - Represents a person using the room booking system
+model User {
+  id            String   @id @default(uuid())
+  username      String   @unique @db.VarChar(50)
+  passwordHash  String   @map("password_hash")
+  email         String   @unique @db.VarChar(255)
+  fullName      String   @map("full_name") @db.VarChar(200)
+  userType      UserType @map("user_type")
+  rankingScore  Int      @default(100) @map("ranking_score")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  organizedBookings    Booking[]            @relation("OrganizerBookings")
+  participatedBookings BookingParticipant[]
+  notifications        Notification[]
+
+  @@index([userType])
+  @@map("users")
+}
+
+enum UserType {
+  STANDARD
+  VIP
+}
+
+// Room entity - Represents a bookable meeting room
+model Room {
+  id        String   @id @default(uuid())
+  name      String   @unique @db.VarChar(100)
+  roomType  RoomType @map("room_type")
+  capacity  Int
+  equipment Json
+  location  String?  @db.VarChar(200)
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  bookings Booking[]
+
+  @@index([roomType])
+  @@index([capacity])
+  @@map("rooms")
+}
+
+enum RoomType {
+  NORMAL
+  VIP
+}
+
+// Booking entity - Represents a room reservation
+model Booking {
+  id              String        @id @default(uuid())
+  roomId          String        @map("room_id")
+  organizerId     String        @map("organizer_id")
+  startTime       DateTime      @map("start_time")
+  endTime         DateTime      @map("end_time")
+  status          BookingStatus
+  title           String?       @db.VarChar(200)
+  description     String?       @db.Text
+  rejectionReason String?       @map("rejection_reason") @db.Text
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  checkedInAt     DateTime?     @map("checked_in_at")
+
+  room         Room                 @relation(fields: [roomId], references: [id], onDelete: Restrict)
+  organizer    User                 @relation("OrganizerBookings", fields: [organizerId], references: [id], onDelete: Restrict)
+  participants BookingParticipant[]
+  notifications Notification[]
+
+  @@index([roomId, startTime, endTime])
+  @@index([organizerId])
+  @@index([status])
+  @@index([startTime])
+  @@map("bookings")
+}
+
+enum BookingStatus {
+  REQUESTED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+  CANCELLED
+  NO_SHOW
+}
+
+// BookingParticipant join table - Many-to-many relationship between bookings and users
+model BookingParticipant {
+  id        String   @id @default(uuid())
+  bookingId String   @map("booking_id")
+  userId    String   @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  booking Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@unique([bookingId, userId])
+  @@index([bookingId])
+  @@index([userId])
+  @@map("booking_participants")
+}
+
+// Notification entity - Communication sent to users about booking events
+model Notification {
+  id               String           @id @default(uuid())
+  bookingId        String?          @map("booking_id")
+  recipientId      String           @map("recipient_id")
+  notificationType NotificationType @map("notification_type")
+  subject          String           @db.VarChar(200)
+  message          String           @db.Text
+  emailSent        Boolean          @default(false) @map("email_sent")
+  emailSentAt      DateTime?        @map("email_sent_at")
+  read             Boolean          @default(false)
+  readAt           DateTime?        @map("read_at")
+  createdAt        DateTime         @default(now()) @map("created_at")
+
+  booking   Booking? @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  recipient User     @relation(fields: [recipientId], references: [id])
+
+  @@index([recipientId, read, createdAt(sort: Desc)])
+  @@index([emailSent])
+  @@map("notifications")
+}
+
+enum NotificationType {
+  BOOKING_CONFIRMED
+  BOOKING_REJECTED
+  BOOKING_CANCELLED
+  NO_SHOW_PENALTY
+  CHECK_IN_REMINDER
+}

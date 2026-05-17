@@ -26,16 +26,16 @@ This is a web application with separate frontend and backend:
 
 **Purpose**: Project initialization and basic structure per plan.md
 
-- [ ] T001 Create project directory structure (backend/, frontend/, specs/, docs/)
-- [ ] T002 Initialize backend Node.js project with package.json and TypeScript 5.4+ configuration
-- [ ] T003 [P] Initialize frontend React 18.2+ project with TypeScript and Vite
-- [ ] T004 [P] Configure ESLint and Prettier for both backend and frontend
+- [x] T001 Create project directory structure (backend/, frontend/, specs/, docs/)
+- [x] T002 Initialize backend Node.js project with package.json and TypeScript 5.4+ configuration
+- [x] T003 [P] Initialize frontend React 18.2+ project with TypeScript and Vite
+- [x] T004 [P] Configure ESLint and Prettier for both backend and frontend
 - [ ] T005 [P] Setup Git hooks with Husky for pre-commit linting
-- [ ] T006 Create Docker Compose configuration for PostgreSQL 15+ database
-- [ ] T007 [P] Setup backend directory structure (src/controllers/, src/services/, src/repositories/, src/middleware/, src/types/)
-- [ ] T008 [P] Setup frontend directory structure (src/components/, src/pages/, src/services/, src/hooks/, src/types/)
-- [ ] T009 Configure environment variables template (.env.example) for backend
-- [ ] T010 [P] Configure environment variables template (.env.example) for frontend
+- [x] T006 Create Docker Compose configuration for PostgreSQL 15+ database
+- [x] T007 [P] Setup backend directory structure (src/controllers/, src/services/, src/repositories/, src/middleware/, src/types/)
+- [x] T008 [P] Setup frontend directory structure (src/components/, src/pages/, src/services/, src/hooks/, src/types/)
+- [x] T009 Configure environment variables template (.env.example) for backend
+- [x] T010 [P] Configure environment variables template (.env.example) for frontend
 
 ---
 
@@ -45,26 +45,26 @@ This is a web application with separate frontend and backend:
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T011 Initialize Prisma 5.x in backend/prisma/ with PostgreSQL provider
-- [ ] T012 Create Prisma schema in backend/prisma/schema.prisma with User, Room, Booking, BookingParticipant, Notification models from data-model.md
+- [x] T011 Initialize Prisma 5.x in backend/prisma/ with PostgreSQL provider
+- [x] T012 Create Prisma schema in backend/prisma/schema.prisma with User, Room, Booking, BookingParticipant, Notification models from data-model.md
 - [ ] T013 Create initial database migration using `prisma migrate dev`
-- [ ] T014 Create database seed script in backend/prisma/seed.ts (10 rooms: 8 normal, 2 VIP; 1 superuser with credentials from FR-002)
-- [ ] T015 Install and configure Express 4.18+ in backend/src/app.ts with middleware (cors, helmet, express-session)
-- [ ] T016 [P] Install and configure Passport.js 0.7+ with local strategy in backend/src/config/passport.ts
-- [ ] T017 [P] Setup session store with express-session and connect-pg-simple in backend/src/config/session.ts
-- [ ] T018 [P] Configure Nodemailer 6.9+ for email notifications in backend/src/config/email.ts
-- [ ] T019 Create authentication middleware in backend/src/middleware/auth.ts (isAuthenticated, isVIP)
-- [ ] T020 [P] Create error handling middleware in backend/src/middleware/errorHandler.ts
-- [ ] T021 [P] Create validation middleware using express-validator in backend/src/middleware/validation.ts
-- [ ] T022 Setup Jest testing framework for backend in backend/jest.config.js
-- [ ] T023 [P] Setup React Testing Library and Jest for frontend in frontend/jest.config.js
+- [x] T014 Create database seed script in backend/prisma/seed.ts (10 rooms: 8 normal, 2 VIP; 1 superuser with credentials from FR-002)
+- [x] T015 Install and configure Express 4.18+ in backend/src/app.ts with middleware (cors, helmet, express-session)
+- [x] T016 [P] Install and configure Passport.js 0.7+ with local strategy in backend/src/config/passport.ts
+- [x] T017 [P] Setup session store with express-session and connect-pg-simple in backend/src/config/session.ts
+- [x] T018 [P] Configure Nodemailer 6.9+ for email notifications in backend/src/config/email.ts
+- [x] T019 Create authentication middleware in backend/src/middleware/auth.ts (isAuthenticated, isVIP)
+- [x] T020 [P] Create error handling middleware in backend/src/middleware/errorHandler.ts
+- [x] T021 [P] Create validation middleware using express-validator in backend/src/middleware/validation.ts
+- [x] T022 Setup Jest testing framework for backend in backend/jest.config.js
+- [x] T023 [P] Setup React Testing Library and Jest for frontend in frontend/jest.config.js
 - [ ] T024 Install React Big Calendar and date-fns in frontend
 - [ ] T025 [P] Install React Query for server state management in frontend
-- [ ] T026 Create base API client service in frontend/src/services/api.ts with axios
-- [ ] T027 [P] Create auth context provider in frontend/src/contexts/AuthContext.tsx
-- [ ] T028 Create TypeScript shared types in backend/src/types/ (BookingDTO, UserDTO, RoomDTO, NotificationDTO)
-- [ ] T029 [P] Setup rate limiting middleware with express-rate-limit in backend/src/middleware/rateLimit.ts
-- [ ] T030 Create health check endpoint in backend/src/controllers/healthController.ts for power outage detection (EC-002)
+- [x] T026 Create base API client service in frontend/src/services/api.ts with axios
+- [x] T027 [P] Create auth context provider in frontend/src/contexts/AuthContext.tsx
+- [x] T028 Create TypeScript shared types in backend/src/types/ (BookingDTO, UserDTO, RoomDTO, NotificationDTO)
+- [x] T029 [P] Setup rate limiting middleware with express-rate-limit in backend/src/middleware/rateLimit.ts
+- [x] T030 Create health check endpoint in backend/src/controllers/healthController.ts for power outage detection (EC-002)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -90,41 +90,41 @@ This is a web application with separate frontend and backend:
 
 **Authentication (FR-001, FR-002)**
 
-- [ ] T036 [P] [US1] Implement authController.login in backend/src/controllers/authController.ts
-- [ ] T037 [P] [US1] Implement authController.logout in backend/src/controllers/authController.ts
-- [ ] T038 [P] [US1] Implement authController.getCurrentUser in backend/src/controllers/authController.ts
-- [ ] T039 [US1] Register auth routes in backend/src/routes/authRoutes.ts
+- [x] T036 [P] [US1] Implement authController.login in backend/src/controllers/authController.ts
+- [x] T037 [P] [US1] Implement authController.logout in backend/src/controllers/authController.ts
+- [x] T038 [P] [US1] Implement authController.getCurrentUser in backend/src/controllers/authController.ts
+- [x] T039 [US1] Register auth routes in backend/src/routes/authRoutes.ts
 
 **Room Availability (FR-005, FR-006, FR-007)**
 
-- [ ] T040 [P] [US1] Create RoomRepository in backend/src/repositories/roomRepository.ts with findAvailable method
-- [ ] T041 [US1] Implement RoomService in backend/src/services/roomService.ts with getAvailableRooms method (SC-003: <2s query)
-- [ ] T042 [US1] Implement roomController.getRooms in backend/src/controllers/roomController.ts with filters (capacity, equipment, startTime, endTime)
-- [ ] T043 [P] [US1] Implement roomController.getRoomById in backend/src/controllers/roomController.ts
-- [ ] T044 [US1] Register room routes in backend/src/routes/roomRoutes.ts
+- [x] T040 [P] [US1] Create RoomRepository in backend/src/repositories/roomRepository.ts with findAvailable method
+- [x] T041 [US1] Implement RoomService in backend/src/services/roomService.ts with getAvailableRooms method (SC-003: <2s query)
+- [x] T042 [US1] Implement roomController.getRooms in backend/src/controllers/roomController.ts with filters (capacity, equipment, startTime, endTime)
+- [x] T043 [P] [US1] Implement roomController.getRoomById in backend/src/controllers/roomController.ts
+- [x] T044 [US1] Register room routes in backend/src/routes/roomRoutes.ts
 
 **Booking Creation (FR-008, FR-009, FR-010, FR-011, FR-012, FR-014)**
 
-- [ ] T045 [P] [US1] Create BookingRepository in backend/src/repositories/bookingRepository.ts with create, findConflicts methods
-- [ ] T046 [US1] Implement BookingService.createBooking in backend/src/services/bookingService.ts with conflict detection (FR-009, FR-024) using SERIALIZABLE transaction
-- [ ] T047 [US1] Implement duration validation logic in BookingService (FR-010, FR-011, FR-012)
-- [ ] T048 [US1] Implement BookingParticipantRepository in backend/src/repositories/bookingParticipantRepository.ts
-- [ ] T049 [US1] Implement bookingController.createBooking in backend/src/controllers/bookingController.ts
-- [ ] T050 [P] [US1] Implement bookingController.getBookings in backend/src/controllers/bookingController.ts with pagination
-- [ ] T051 [P] [US1] Implement bookingController.getBookingById in backend/src/controllers/bookingController.ts
-- [ ] T052 [US1] Register booking routes in backend/src/routes/bookingRoutes.ts
+- [x] T045 [P] [US1] Create BookingRepository in backend/src/repositories/bookingRepository.ts with create, findConflicts methods
+- [x] T046 [US1] Implement BookingService.createBooking in backend/src/services/bookingService.ts with conflict detection (FR-009, FR-024) using SERIALIZABLE transaction
+- [x] T047 [US1] Implement duration validation logic in BookingService (FR-010, FR-011, FR-012)
+- [x] T048 [US1] Implement BookingParticipantRepository in backend/src/repositories/bookingParticipantRepository.ts
+- [x] T049 [US1] Implement bookingController.createBooking in backend/src/controllers/bookingController.ts
+- [x] T050 [P] [US1] Implement bookingController.getBookings in backend/src/controllers/bookingController.ts with pagination
+- [x] T051 [P] [US1] Implement bookingController.getBookingById in backend/src/controllers/bookingController.ts
+- [x] T052 [US1] Register booking routes in backend/src/routes/bookingRoutes.ts
 
 **Notifications (FR-015, FR-016)**
 
-- [ ] T053 [P] [US1] Create NotificationRepository in backend/src/repositories/notificationRepository.ts
-- [ ] T054 [US1] Implement NotificationService in backend/src/services/notificationService.ts with sendBookingConfirmed and sendBookingRejected methods
-- [ ] T055 [US1] Integrate notification sending into BookingService.createBooking (fire-and-forget async pattern)
-- [ ] T056 [US1] Implement alternative room suggestions logic in BookingService for conflict responses (FR-016)
+- [x] T053 [P] [US1] Create NotificationRepository in backend/src/repositories/notificationRepository.ts
+- [x] T054 [US1] Implement NotificationService in backend/src/services/notificationService.ts with sendBookingConfirmed and sendBookingRejected methods
+- [x] T055 [US1] Integrate notification sending into BookingService.createBooking (fire-and-forget async pattern)
+- [x] T056 [US1] Implement alternative room suggestions logic in BookingService for conflict responses (FR-016)
 
 **Calendar Display (FR-017)**
 
-- [ ] T057 [P] [US1] Implement calendarController.getCalendarEvents in backend/src/controllers/calendarController.ts
-- [ ] T058 [US1] Register calendar routes in backend/src/routes/calendarRoutes.ts
+- [x] T057 [P] [US1] Implement calendarController.getCalendarEvents in backend/src/controllers/calendarController.ts
+- [x] T058 [US1] Register calendar routes in backend/src/routes/calendarRoutes.ts
 
 **Frontend - Authentication**
 
