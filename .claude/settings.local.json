@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Skill(speckit-git-initialize)",
-      "Skill(speckit-git-initialize:*)"
+      "Skill(speckit-git-initialize:*)",
+      "Bash(.specify/scripts/powershell/check-prerequisites.ps1 -Json -PathsOnly)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -PathsOnly)",
+      "Skill(speckit-git-feature)",
+      "Skill(speckit-git-feature:*)",
+      "Bash(cat .specify/extensions/git/git-config.yml)",
+      "Bash(cat .specify/init-options.json)",
+      "Bash(.specify/extensions/git/scripts/bash/create-new-feature.sh --json --short-name \"room-booking-system\" \"Web app room booking system with VIP and standard users\")"
     ]
   }
 }
