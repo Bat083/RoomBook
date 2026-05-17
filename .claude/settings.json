@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m '[Spec Kit] Add implementation plan *)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/scripts/powershell/setup-tasks.ps1 -Json)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/extensions/git/scripts/powershell/auto-commit.ps1 after_tasks)"
     ]
   }
 }
