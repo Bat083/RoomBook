@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(speckit-git-initialize)",
+      "Skill(speckit-git-initialize:*)"
+    ]
+  }
+}
