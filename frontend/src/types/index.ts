@@ -93,10 +93,73 @@ export interface CalendarEvent {
   roomName: string;
   organizerName: string;
   title: string;
-  start: Date;
-  end: Date;
+  startTime: string;
+  endTime: string;
   status: BookingStatus;
   participantCount: number;
   isOrganizer: boolean;
   isParticipant: boolean;
+}
+
+// Additional types for frontend use
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+  fullName: string;
+  type: UserType;
+  rankingScore: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Room {
+  id: string;
+  name: string;
+  type: RoomType;
+  capacity: number;
+  equipment: string[];
+  location: string;
+  available?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Booking {
+  id: string;
+  roomId: string;
+  organizerId: string;
+  startTime: string;
+  endTime: string;
+  status: BookingStatus;
+  title: string;
+  description?: string;
+  createdAt: string;
+  updatedAt: string;
+  checkedInAt?: string | null;
+  room: Room;
+  organizer: User;
+  participants?: User[];
+  participantCount?: number;
+}
+
+export interface CreateBookingRequest {
+  roomId: string;
+  startTime: string;
+  endTime: string;
+  title: string;
+  description?: string;
+  participantIds: string[];
+}
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  total: number;
+  page: number;
+  limit: number;
 }

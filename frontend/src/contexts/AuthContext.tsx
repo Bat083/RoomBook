@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import api from '../services/api';
-import { UserDTO } from '../types';
+import { authService } from '../services/authService';
+import { User } from '../types';
 
 interface AuthContextType {
-  user: UserDTO | null;
+  user: User | null;
   loading: boolean;
   login: (username: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -13,18 +13,19 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<UserDTO | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   // Check authentication status on mount
   useEffect(() => {
     checkAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function checkAuth() {
     try {
-      const response = await api.get('/auth/me');
-      setUser(response.data.user);
+      const userData = await authService.getCurrentUser();
+      setUser(userData);
     } catch (error) {
       setUser(null);
     } finally {
@@ -33,12 +34,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function login(username: string, password: string) {
-    const response = await api.post('/auth/login', { username, password });
-    setUser(response.data.user);
+    const userData = await authService.login(username, password);
+    setUser(userData);
   }
 
   async function logout() {
-    await api.post('/auth/logout');
+    await authService.logout();
     setUser(null);
   }
 
