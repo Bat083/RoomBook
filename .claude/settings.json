@@ -14,7 +14,8 @@
       "Bash(powershell.exe -ExecutionPolicy Bypass -File .specify/extensions/git/scripts/powershell/auto-commit.ps1 after_implement)",
       "Bash(git commit -m ' *)",
       "Bash(npm run *)",
-      "Bash(npm list *)"
+      "Bash(npm list *)",
+      "Bash(powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)"
     ]
   }
 }

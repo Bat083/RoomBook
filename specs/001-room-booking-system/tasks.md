@@ -58,8 +58,8 @@ This is a web application with separate frontend and backend:
 - [x] T021 [P] Create validation middleware using express-validator in backend/src/middleware/validation.ts
 - [x] T022 Setup Jest testing framework for backend in backend/jest.config.js
 - [x] T023 [P] Setup React Testing Library and Jest for frontend in frontend/jest.config.js
-- [ ] T024 Install React Big Calendar and date-fns in frontend
-- [ ] T025 [P] Install React Query for server state management in frontend
+- [x] T024 Install React Big Calendar and date-fns in frontend
+- [x] T025 [P] Install React Query for server state management in frontend
 - [x] T026 Create base API client service in frontend/src/services/api.ts with axios
 - [x] T027 [P] Create auth context provider in frontend/src/contexts/AuthContext.tsx
 - [x] T028 Create TypeScript shared types in backend/src/types/ (BookingDTO, UserDTO, RoomDTO, NotificationDTO)
@@ -80,11 +80,11 @@ This is a web application with separate frontend and backend:
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T031 [P] [US1] Create integration test for POST /auth/login in backend/tests/integration/auth.test.ts
-- [ ] T032 [P] [US1] Create integration test for GET /rooms with availability filtering in backend/tests/integration/rooms.test.ts
-- [ ] T033 [P] [US1] Create integration test for POST /bookings with conflict detection (FR-009, FR-024) in backend/tests/integration/bookings.test.ts
-- [ ] T034 [P] [US1] Create integration test for duration validation (FR-010, FR-011, FR-012) in backend/tests/integration/bookings.test.ts
-- [ ] T035 [P] [US1] Create E2E test for complete booking flow (SC-001: <2 min) in frontend/tests/e2e/booking-flow.spec.ts
+- [x] T031 [P] [US1] Create integration test for POST /auth/login in backend/tests/integration/auth.test.ts
+- [x] T032 [P] [US1] Create integration test for GET /rooms with availability filtering in backend/tests/integration/rooms.test.ts
+- [x] T033 [P] [US1] Create integration test for POST /bookings with conflict detection (FR-009, FR-024) in backend/tests/integration/bookings.test.ts
+- [x] T034 [P] [US1] Create integration test for duration validation (FR-010, FR-011, FR-012) in backend/tests/integration/bookings.test.ts
+- [x] T035 [P] [US1] Create E2E test for complete booking flow (SC-001: <2 min) in frontend/tests/e2e/booking-flow.spec.ts
 
 ### Implementation for User Story 1
 
@@ -128,28 +128,28 @@ This is a web application with separate frontend and backend:
 
 **Frontend - Authentication**
 
-- [ ] T059 [P] [US1] Create LoginPage component in frontend/src/pages/LoginPage.tsx
-- [ ] T060 [P] [US1] Create authService with login, logout, getCurrentUser methods in frontend/src/services/authService.ts
-- [ ] T061 [US1] Implement AuthContext with login, logout, user state in frontend/src/contexts/AuthContext.tsx
-- [ ] T062 [US1] Create ProtectedRoute component in frontend/src/components/ProtectedRoute.tsx
+- [x] T059 [P] [US1] Create LoginPage component in frontend/src/pages/LoginPage.tsx
+- [x] T060 [P] [US1] Create authService with login, logout, getCurrentUser methods in frontend/src/services/authService.ts
+- [x] T061 [US1] Implement AuthContext with login, logout, user state in frontend/src/contexts/AuthContext.tsx
+- [x] T062 [US1] Create ProtectedRoute component in frontend/src/components/ProtectedRoute.tsx
 
 **Frontend - Room Booking Flow**
 
-- [ ] T063 [P] [US1] Create RoomListPage component with date/time selection in frontend/src/pages/RoomListPage.tsx
-- [ ] T064 [P] [US1] Create RoomCard component with room details in frontend/src/components/RoomCard.tsx
-- [ ] T065 [P] [US1] Create BookingForm component with participant selection in frontend/src/components/BookingForm.tsx
-- [ ] T066 [US1] Create roomService with getRooms, getRoomById methods in frontend/src/services/roomService.ts
-- [ ] T067 [US1] Create bookingService with createBooking, getBookings, getBookingById methods in frontend/src/services/bookingService.ts
-- [ ] T068 [US1] Implement React Query hooks for room availability queries in frontend/src/hooks/useRooms.ts
-- [ ] T069 [P] [US1] Implement React Query hooks for booking mutations in frontend/src/hooks/useBookings.ts
-- [ ] T070 [US1] Add conflict error handling with alternative suggestions display in BookingForm component
+- [x] T063 [P] [US1] Create RoomListPage component with date/time selection in frontend/src/pages/RoomListPage.tsx
+- [x] T064 [P] [US1] Create RoomCard component with room details in frontend/src/components/RoomCard.tsx
+- [x] T065 [P] [US1] Create BookingForm component with participant selection in frontend/src/components/BookingForm.tsx
+- [x] T066 [US1] Create roomService with getRooms, getRoomById methods in frontend/src/services/roomService.ts
+- [x] T067 [US1] Create bookingService with createBooking, getBookings, getBookingById methods in frontend/src/services/bookingService.ts
+- [x] T068 [US1] Implement React Query hooks for room availability queries in frontend/src/hooks/useRooms.ts
+- [x] T069 [P] [US1] Implement React Query hooks for booking mutations in frontend/src/hooks/useBookings.ts
+- [x] T070 [US1] Add conflict error handling with alternative suggestions display in BookingForm component
 
 **Frontend - Calendar Display**
 
-- [ ] T071 [P] [US1] Create CalendarPage component with React Big Calendar in frontend/src/pages/CalendarPage.tsx
-- [ ] T072 [US1] Create calendarService with getCalendarEvents method in frontend/src/services/calendarService.ts
-- [ ] T073 [US1] Implement React Query hook for calendar data in frontend/src/hooks/useCalendar.ts
-- [ ] T074 [US1] Style calendar events with status-based colors in CalendarPage component
+- [x] T071 [P] [US1] Create CalendarPage component with React Big Calendar in frontend/src/pages/CalendarPage.tsx
+- [x] T072 [US1] Create calendarService with getCalendarEvents method in frontend/src/services/calendarService.ts
+- [x] T073 [US1] Implement React Query hook for calendar data in frontend/src/hooks/useCalendar.ts
+- [x] T074 [US1] Style calendar events with status-based colors in CalendarPage component
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
