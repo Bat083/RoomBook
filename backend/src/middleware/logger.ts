@@ -43,6 +43,7 @@ export function requestLogger(req: Request, res: Response, next: NextFunction): 
 }
 
 // Error logging middleware (place after routes)
+// @ts-ignore - res parameter required for Express error handler signature
 export function errorLogger(err: Error, req: Request, res: Response, next: NextFunction): void {
   const logData: LogData = {
     method: req.method,

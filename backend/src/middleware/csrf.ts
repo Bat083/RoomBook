@@ -17,6 +17,7 @@ export function csrfTokenMiddleware(req: Request, res: Response, next: NextFunct
 }
 
 // Error handler for CSRF validation failures
+// @ts-ignore - req parameter required for Express error handler signature
 export function csrfErrorHandler(err: any, req: Request, res: Response, next: NextFunction): void {
   if (err.code === 'EBADCSRFTOKEN') {
     res.status(403).json({

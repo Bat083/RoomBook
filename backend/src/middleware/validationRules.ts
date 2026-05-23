@@ -109,7 +109,7 @@ export const calendarQueryValidation = [
   query('endDate')
     .isISO8601().withMessage('End date must be valid ISO 8601 date')
     .custom((value, { req }) => {
-      if (new Date(value) <= new Date(req.query.startDate as string)) {
+      if (req.query?.startDate && new Date(value) <= new Date(req.query.startDate as string)) {
         throw new Error('End date must be after start date');
       }
       return true;
