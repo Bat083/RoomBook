@@ -306,26 +306,26 @@ This is a web application with separate frontend and backend:
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T128 [P] Add API request/response logging middleware in backend/src/middleware/logger.ts
-- [ ] T129 [P] Add Prisma query logging in backend/src/config/database.ts
-- [ ] T130 [P] Implement comprehensive input validation for all endpoints using express-validator
-- [ ] T131 [P] Add CORS configuration based on environment in backend/src/config/cors.ts
-- [ ] T132 [P] Add security headers (helmet) configuration in backend/src/app.ts
-- [ ] T133 [P] Implement CSRF protection with csurf middleware in backend/src/middleware/csrf.ts
-- [ ] T134 [P] Create API documentation with OpenAPI/Swagger in backend/docs/api.yml
-- [ ] T135 [P] Add loading states and skeleton screens to all frontend pages
-- [ ] T136 [P] Add error boundary component in frontend/src/components/ErrorBoundary.tsx
-- [ ] T137 [P] Implement toast notifications for user feedback in frontend using react-toastify
-- [ ] T138 [P] Add responsive design breakpoints for mobile/tablet views
-- [ ] T139 [P] Create user profile page in frontend/src/pages/ProfilePage.tsx with ranking display
-- [ ] T140 [P] Add booking history pagination in frontend
-- [ ] T141 Create Docker production configuration in Dockerfile and docker-compose.prod.yml
-- [ ] T142 [P] Create README.md with setup instructions per quickstart.md
-- [ ] T143 [P] Add deployment documentation in docs/deployment.md
-- [ ] T144 Run constitution compliance validation per plan.md checklist
-- [ ] T145 Performance testing for SC-001 (<2 min booking), SC-003 (<2s availability)
-- [ ] T146 Security audit for VIP authorization (SC-005: zero unauthorized access)
-- [ ] T147 Concurrency testing for first-write-wins behavior (SC-007)
+- [X] T128 [P] Add API request/response logging middleware in backend/src/middleware/logger.ts
+- [X] T129 [P] Add Prisma query logging in backend/src/config/database.ts
+- [X] T130 [P] Implement comprehensive input validation for all endpoints using express-validator
+- [X] T131 [P] Add CORS configuration based on environment in backend/src/config/cors.ts
+- [X] T132 [P] Add security headers (helmet) configuration in backend/src/app.ts
+- [X] T133 [P] Implement CSRF protection with csurf middleware in backend/src/middleware/csrf.ts
+- [X] T134 [P] Create API documentation with OpenAPI/Swagger in backend/docs/api.yml
+- [X] T135 [P] Add loading states and skeleton screens to all frontend pages
+- [X] T136 [P] Add error boundary component in frontend/src/components/ErrorBoundary.tsx
+- [X] T137 [P] Implement toast notifications for user feedback in frontend using react-toastify
+- [X] T138 [P] Add responsive design breakpoints for mobile/tablet views
+- [X] T139 [P] Create user profile page in frontend/src/pages/ProfilePage.tsx with ranking display
+- [X] T140 [P] Add booking history pagination in frontend
+- [X] T141 Create Docker production configuration in Dockerfile and docker-compose.prod.yml
+- [X] T142 [P] Create README.md with setup instructions per quickstart.md
+- [X] T143 [P] Add deployment documentation in docs/deployment.md
+- [X] T144 Run constitution compliance validation per plan.md checklist
+- [X] T145 Performance testing for SC-001 (<2 min booking), SC-003 (<2s availability)
+- [X] T146 Security audit for VIP authorization (SC-005: zero unauthorized access)
+- [X] T147 Concurrency testing for first-write-wins behavior (SC-007)
 
 ---
 

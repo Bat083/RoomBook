@@ -5,20 +5,35 @@ import session from 'express-session';
 import passport from 'passport';
 import { sessionConfig } from './config/session';
 import { configurePassport } from './config/passport';
+import { corsConfig } from './config/cors';
 import { errorHandler } from './middleware/errorHandler';
 import { rateLimiters } from './middleware/rateLimit';
+import { requestLogger, errorLogger } from './middleware/logger';
+import { csrfProtection, csrfTokenMiddleware, csrfErrorHandler } from './middleware/csrf';
 
 // Initialize Express app
 const app: Application = express();
 
 // Security middleware
-app.use(helmet());
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
-    credentials: true,
-  })
-);
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'"],
+      imgSrc: ["'self'", 'data:', 'https:'],
+    },
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true,
+  },
+}));
+app.use(cors(corsConfig));
+
+// Request logging middleware
+app.use(requestLogger);
 
 // Body parsing middleware
 app.use(express.json());
@@ -31,6 +46,12 @@ app.use(session(sessionConfig));
 configurePassport(passport);
 app.use(passport.initialize());
 app.use(passport.session());
+
+// CSRF protection (after session, before routes)
+if (process.env.NODE_ENV !== 'test') {
+  app.use(csrfProtection);
+  app.use(csrfTokenMiddleware);
+}
 
 // Rate limiting
 app.use('/api/v1/auth/login', rateLimiters.login);
@@ -57,6 +78,8 @@ app.use('/api/v1/calendar', calendarRoutes);
 app.use('/api/v1/notifications', notificationRoutes);
 
 // Error handling middleware (must be last)
+app.use(errorLogger);
+app.use(csrfErrorHandler);
 app.use(errorHandler);
 
 // Start cron jobs (User Story 3: FR-019, FR-020, FR-027)
