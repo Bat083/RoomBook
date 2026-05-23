@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-05-23  
 **Branch**: 001-room-booking-system  
-**Overall Progress**: 82/147 tasks (56%)
+**Overall Progress**: 103/147 tasks (70%)
 
 ---
 
@@ -149,18 +149,56 @@
 
 ---
 
-### ⏳ Phase 5: User Story 3 - Check-in & No-Show (0% - 18 tasks)
+### ✅ Phase 5: User Story 3 - Check-in & No-Show (100% - 21/21 tasks)
 
 **Goal**: Check-in functionality and automated no-show detection
 
-**Backend**
-- [ ] T086-T094: Check-in logic & no-show detection
-- [ ] T095-T097: Auto-completion cron
+#### Tests (✅ COMPLETE - 3/3 tasks)
+- [X] T083: Integration test for POST /bookings/:id/check-in
+- [X] T084: Integration test for no-show detection cron job
+- [X] T085: Integration test for ranking score reduction (FR-020)
 
-**Frontend**
-- [ ] T098-T103: Check-in UI & no-show display
+#### Backend Implementation (✅ COMPLETE - 12/12 tasks)
 
-**Note**: Backend check-in endpoint exists. No-show detection needs cron implementation.
+**Check-in (FR-018)**
+- [X] T086: State machine transition validator in stateMachine.ts
+- [X] T087: BookingService.checkIn method with state validation (CONFIRMED → IN_PROGRESS)
+- [X] T088: bookingController.checkIn implementation
+- [X] T089: Check-in route POST /bookings/:id/check-in
+
+**No-Show Detection (FR-019, FR-020)**
+- [X] T090: NoShowDetectionService with detectNoShows method
+- [X] T091: BookingService.markNoShow with ranking reduction logic
+- [X] T092: No-show cron job using node-cron (runs every 1 minute)
+- [X] T093: Cron job integrated into app.ts startup
+- [X] T094: NotificationService.sendNoShowPenalty method
+
+**Automatic Completion (FR-027)**
+- [X] T095: CompletionService to transition IN_PROGRESS → COMPLETED
+- [X] T096: Completion cron job (runs every 5 minutes)
+- [X] T097: Completion cron integrated into app.ts
+
+#### Frontend Implementation (✅ COMPLETE - 6/6 tasks)
+
+**Check-in UI**
+- [X] T098: CheckInButton component with validation
+- [X] T099: checkIn method in bookingService
+- [X] T100: BookingDetailsPage component
+- [X] T101: Check-in window validation (10-minute grace period)
+
+**No-Show Display**
+- [X] T102: NO_SHOW status badge styling in MyBookingsPage
+- [X] T103: Ranking score display on ProfilePage
+
+**Status**: COMPLETE ✨
+
+**Key Features**:
+- Check-in within 10-minute grace period after start time
+- Automatic no-show detection via cron job (every 1 minute)
+- Ranking score reduction (-2 points per no-show)
+- Automatic booking completion after end time (every 5 minutes)
+- State machine validation for booking transitions
+- Comprehensive integration tests for check-in and no-show flows
 
 ---
 
@@ -282,7 +320,7 @@ npm run dev
 
 ## 📁 File Structure
 
-### Backend (30+ files)
+### Backend (40+ files)
 ```
 backend/
 ├── src/
@@ -291,7 +329,8 @@ backend/
 │   ├── middleware/       ✅ 4 files (auth, error, validation, rateLimit)
 │   ├── repositories/     ✅ 3 files (user, room, booking)
 │   ├── routes/           ✅ 4 files (auth, room, booking, calendar)
-│   ├── services/         ✅ 2 files (booking, notification)
+│   ├── services/         ✅ 5 files (booking, notification, noShowDetection, completion, stateMachine)
+│   ├── jobs/             ✅ 2 files (noShowCron, completionCron)
 │   ├── types/            ✅ 2 files (DTOs)
 │   ├── app.ts            ✅
 │   └── index.ts          ✅
@@ -299,19 +338,19 @@ backend/
 │   ├── schema.prisma     ✅
 │   └── seed.ts           ✅
 ├── tests/
-│   ├── integration/      ✅ 1 file (vip-authorization.test.ts)
+│   ├── integration/      ✅ 3 files (vip-authorization, check-in, no-show)
 │   └── setup.ts          ✅
 ├── package.json          ✅
 ├── tsconfig.json         ✅
 └── jest.config.js        ✅
 ```
 
-### Frontend (20+ files)
+### Frontend (25+ files)
 ```
 frontend/
 ├── src/
-│   ├── components/       ✅ 3 files (ProtectedRoute, RoomCard, BookingForm)
-│   ├── pages/            ✅ 4 files (Login, RoomList, Calendar, MyBookings)
+│   ├── components/       ✅ 4 files (ProtectedRoute, RoomCard, BookingForm, CheckInButton)
+│   ├── pages/            ✅ 6 files (Login, RoomList, Calendar, MyBookings, BookingDetails, Profile)
 │   ├── contexts/         ✅ 1 file (AuthContext)
 │   ├── services/         ✅ 5 files (api, auth, room, booking, calendar)
 │   ├── hooks/            ✅ 3 files (useRooms, useBookings, useCalendar)
@@ -418,20 +457,31 @@ frontend/
 - ✅ Type-safe end-to-end
 - ✅ Integration tests for VIP authorization
 
-**Total Lines of Code**: ~5,300+ lines across 51+ files
+**Total Lines of Code**: ~7,000+ lines across 65+ files
 
-**Development Time**: ~2.5 days for complete MVP with User Stories 1 & 2
+**Development Time**: ~3 days for complete MVP with User Stories 1, 2 & 3
 
 ---
 
 ## 📈 Recent Updates
+
+**2026-05-23**: Phase 5 (User Story 3) Complete
+- Check-in functionality with 10-minute grace period validation
+- Automatic no-show detection via cron job (runs every 1 minute)
+- Ranking score reduction (-2 points per no-show)
+- Automatic booking completion cron job (runs every 5 minutes)
+- State machine transition validator for booking status changes
+- BookingDetailsPage with check-in button and cancel functionality
+- ProfilePage displaying user ranking score
+- Comprehensive integration tests for check-in and no-show flows
+- Tasks completed: T083-T103 (21 tasks)
 
 **2026-05-23**: Phase 4 (User Story 2) Complete
 - VIP room authorization with comprehensive integration tests
 - Room filtering by user type (VIP/standard)
 - INSUFFICIENT_CLEARANCE error handling
 - VIP badge UI indicators
-- Tasks completed: T075, T076, T077, T078, T079, T080, T081, T082
+- Tasks completed: T075-T082 (8 tasks)
 
 ---
 

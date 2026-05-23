@@ -7,6 +7,8 @@ import { LoginPage } from './pages/LoginPage';
 import { RoomListPage } from './pages/RoomListPage';
 import { CalendarPage } from './pages/CalendarPage';
 import { MyBookingsPage } from './pages/MyBookingsPage';
+import { BookingDetailsPage } from './pages/BookingDetailsPage';
+import { ProfilePage } from './pages/ProfilePage';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -46,6 +48,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MyBookingsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/bookings/:id"
+              element={
+                <ProtectedRoute>
+                  <BookingDetailsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
                 </ProtectedRoute>
               }
             />

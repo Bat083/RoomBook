@@ -57,4 +57,14 @@ app.use('/api/v1/calendar', calendarRoutes);
 // Error handling middleware (must be last)
 app.use(errorHandler);
 
+// Start cron jobs (User Story 3: FR-019, FR-020, FR-027)
+import { startNoShowCron } from './jobs/noShowCron';
+import { startCompletionCron } from './jobs/completionCron';
+
+// Only start cron jobs if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+  startNoShowCron(); // Runs every 1 minute to detect no-shows
+  startCompletionCron(); // Runs every 5 minutes to auto-complete bookings
+}
+
 export default app;

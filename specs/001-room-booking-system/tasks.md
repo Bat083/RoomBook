@@ -192,44 +192,44 @@ This is a web application with separate frontend and backend:
 
 ### Tests for User Story 3
 
-- [ ] T083 [P] [US3] Create integration test for POST /bookings/:id/check-in in backend/tests/integration/check-in.test.ts
-- [ ] T084 [P] [US3] Create integration test for no-show detection cron job in backend/tests/integration/no-show.test.ts
-- [ ] T085 [P] [US3] Create integration test for ranking score reduction (FR-020) in backend/tests/integration/no-show.test.ts
+- [X] T083 [P] [US3] Create integration test for POST /bookings/:id/check-in in backend/tests/integration/check-in.test.ts
+- [X] T084 [P] [US3] Create integration test for no-show detection cron job in backend/tests/integration/no-show.test.ts
+- [X] T085 [P] [US3] Create integration test for ranking score reduction (FR-020) in backend/tests/integration/no-show.test.ts
 
 ### Implementation for User Story 3
 
 **Backend - Check-in (FR-018)**
 
-- [ ] T086 [US3] Implement state machine transition validator in backend/src/services/stateMachine.ts
-- [ ] T087 [US3] Implement BookingService.checkIn method with state transition validation (CONFIRMED → IN_PROGRESS)
-- [ ] T088 [US3] Implement bookingController.checkIn in backend/src/controllers/bookingController.ts
-- [ ] T089 [US3] Add check-in route POST /bookings/:id/check-in in backend/src/routes/bookingRoutes.ts
+- [X] T086 [US3] Implement state machine transition validator in backend/src/services/stateMachine.ts
+- [X] T087 [US3] Implement BookingService.checkIn method with state transition validation (CONFIRMED → IN_PROGRESS)
+- [X] T088 [US3] Implement bookingController.checkIn in backend/src/controllers/bookingController.ts
+- [X] T089 [US3] Add check-in route POST /bookings/:id/check-in in backend/src/routes/bookingRoutes.ts
 
 **Backend - No-Show Detection (FR-019, FR-020)**
 
-- [ ] T090 [US3] Create NoShowDetectionService in backend/src/services/noShowDetectionService.ts with detectNoShows method
-- [ ] T091 [US3] Implement BookingService.markNoShow method with ranking reduction logic (FR-020)
-- [ ] T092 [US3] Create cron job in backend/src/jobs/noShowCron.ts using node-cron (runs every 1 minute)
-- [ ] T093 [US3] Integrate cron job into backend/src/app.ts startup
-- [ ] T094 [US3] Implement NotificationService.sendNoShowPenalty method
+- [X] T090 [US3] Create NoShowDetectionService in backend/src/services/noShowDetectionService.ts with detectNoShows method
+- [X] T091 [US3] Implement BookingService.markNoShow method with ranking reduction logic (FR-020)
+- [X] T092 [US3] Create cron job in backend/src/jobs/noShowCron.ts using node-cron (runs every 1 minute)
+- [X] T093 [US3] Integrate cron job into backend/src/app.ts startup
+- [X] T094 [US3] Implement NotificationService.sendNoShowPenalty method
 
 **Backend - Automatic Completion (FR-027)**
 
-- [ ] T095 [P] [US3] Create CompletionService in backend/src/services/completionService.ts to transition IN_PROGRESS → COMPLETED when end_time passes
-- [ ] T096 [US3] Create cron job in backend/src/jobs/completionCron.ts (runs every 5 minutes)
-- [ ] T097 [US3] Integrate completion cron into backend/src/app.ts startup
+- [X] T095 [P] [US3] Create CompletionService in backend/src/services/completionService.ts to transition IN_PROGRESS → COMPLETED when end_time passes
+- [X] T096 [US3] Create cron job in backend/src/jobs/completionCron.ts (runs every 5 minutes)
+- [X] T097 [US3] Integrate completion cron into backend/src/app.ts startup
 
 **Frontend - Check-in UI**
 
-- [ ] T098 [P] [US3] Create CheckInButton component in frontend/src/components/CheckInButton.tsx
-- [ ] T099 [US3] Add checkIn method to bookingService in frontend/src/services/bookingService.ts
-- [ ] T100 [US3] Integrate CheckInButton into BookingDetailsPage component in frontend/src/pages/BookingDetailsPage.tsx
-- [ ] T101 [US3] Add check-in window validation (10-minute grace period) in CheckInButton component
+- [X] T098 [P] [US3] Create CheckInButton component in frontend/src/components/CheckInButton.tsx
+- [X] T099 [US3] Add checkIn method to bookingService in frontend/src/services/bookingService.ts
+- [X] T100 [US3] Integrate CheckInButton into BookingDetailsPage component in frontend/src/pages/BookingDetailsPage.tsx
+- [X] T101 [US3] Add check-in window validation (10-minute grace period) in CheckInButton component
 
 **Frontend - No-Show Display**
 
-- [ ] T102 [P] [US3] Add NO_SHOW status badge styling in BookingCard component in frontend/src/components/BookingCard.tsx
-- [ ] T103 [US3] Display ranking score on user profile page in frontend/src/pages/ProfilePage.tsx
+- [X] T102 [P] [US3] Add NO_SHOW status badge styling in BookingCard component in frontend/src/components/BookingCard.tsx
+- [X] T103 [US3] Display ranking score on user profile page in frontend/src/pages/ProfilePage.tsx
 
 **Checkpoint**: All User Stories 1, 2, and 3 should now be independently functional
 

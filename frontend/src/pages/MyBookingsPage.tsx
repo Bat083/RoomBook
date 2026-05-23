@@ -72,7 +72,12 @@ export const MyBookingsPage: React.FC = () => {
         {!isLoading && bookingsData && bookingsData.data.length > 0 && (
           <div className="bookings-list">
             {bookingsData.data.map((booking) => (
-              <div key={booking.id} className="booking-card">
+              <div
+                key={booking.id}
+                className="booking-card"
+                onClick={() => navigate(`/bookings/${booking.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="booking-header">
                   <h3>{booking.title}</h3>
                   <span
@@ -100,12 +105,11 @@ export const MyBookingsPage: React.FC = () => {
                   )}
                 </div>
 
-                {booking.status === 'CONFIRMED' && (
-                  <div className="booking-actions">
-                    <button className="btn-action">Check In</button>
-                    <button className="btn-cancel-booking">Cancel</button>
-                  </div>
-                )}
+                <div className="booking-footer">
+                  <span style={{ fontSize: '12px', color: '#999' }}>
+                    Click to view details
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -244,6 +248,12 @@ export const MyBookingsPage: React.FC = () => {
           padding: 25px;
           border-radius: 10px;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .booking-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .booking-header {
@@ -285,6 +295,13 @@ export const MyBookingsPage: React.FC = () => {
         .detail-row strong {
           color: #333;
           margin-right: 8px;
+        }
+
+        .booking-footer {
+          padding-top: 15px;
+          margin-top: 15px;
+          border-top: 1px solid #e0e0e0;
+          text-align: right;
         }
 
         .booking-actions {
