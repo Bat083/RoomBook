@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { bookingService } from '../services/bookingService';
 import { Booking } from '../types';
 import { CheckInButton } from '../components/CheckInButton';
+import { CancelBookingButton } from '../components/CancelBookingButton';
 import { useAuth } from '../contexts/AuthContext';
 
 export const BookingDetailsPage: React.FC = () => {
@@ -45,28 +46,9 @@ export const BookingDetailsPage: React.FC = () => {
     alert('Successfully checked in!');
   };
 
-  const handleCancelBooking = async () => {
-    if (!booking) return;
-
-    const confirmed = window.confirm(
-      'Are you sure you want to cancel this booking? This action cannot be undone.'
-    );
-
-    if (!confirmed) return;
-
-    try {
-      await bookingService.cancelBooking(booking.id);
-      alert('Booking cancelled successfully');
-      navigate('/my-bookings');
-    } catch (err: any) {
-      if (err.response?.data?.error === 'INVALID_STATE_TRANSITION') {
-        alert('Cannot cancel: booking is not in CONFIRMED status');
-      } else if (err.response?.data?.error === 'FORBIDDEN') {
-        alert('Only the organizer can cancel this booking');
-      } else {
-        alert('Failed to cancel booking. Please try again.');
-      }
-    }
+  const handleCancelSuccess = () => {
+    alert('Booking cancelled successfully');
+    navigate('/bookings');
   };
 
   if (loading) {
@@ -276,21 +258,9 @@ export const BookingDetailsPage: React.FC = () => {
           )}
 
           {canShowCancel && (
-            <button
-              onClick={handleCancelBooking}
-              style={{
-                marginTop: '12px',
-                padding: '12px 24px',
-                fontSize: '16px',
-                backgroundColor: '#dc3545',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-              }}
-            >
-              Cancel Booking
-            </button>
+            <div style={{ marginTop: '12px' }}>
+              <CancelBookingButton booking={booking} onCancelSuccess={handleCancelSuccess} />
+            </div>
           )}
         </div>
       </div>

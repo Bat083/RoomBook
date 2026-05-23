@@ -71,7 +71,7 @@ export class NoShowDetectionService {
    * Get statistics about no-show detection
    * @returns Statistics object
    */
-  async getStatistics(startDate: Date, endDate: Date): Promise<{
+  async getStatistics(_startDate: Date, _endDate: Date): Promise<{
     totalNoShows: number;
     uniqueUsers: number;
     totalPenaltyPoints: number;

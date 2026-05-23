@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-05-23  
 **Branch**: 001-room-booking-system  
-**Overall Progress**: 103/147 tasks (70%)
+**Overall Progress**: 114/147 tasks (78%)
 
 ---
 
@@ -202,17 +202,43 @@
 
 ---
 
-### ⏳ Phase 6: User Story 4 - Booking Cancellation (0% - 9 tasks)
+### ✅ Phase 6: User Story 4 - Booking Cancellation (100% - 11/11 tasks)
 
 **Goal**: User-initiated booking cancellation
 
-**Backend**
-- [ ] T106-T110: Cancellation logic
+#### Tests (✅ COMPLETE - 2/2 tasks)
+- [X] T104: Integration test for DELETE /bookings/:id
+- [X] T105: Integration test for cancellation notifications (FR-023)
 
-**Frontend**
-- [ ] T111-T114: Cancellation UI
+#### Backend Implementation (✅ COMPLETE - 5/5 tasks)
 
-**Note**: Backend cancellation endpoint exists. Frontend UI ready but not connected.
+**Cancellation (FR-021, FR-022, FR-023)**
+- [X] T106: BookingService.cancelBooking method with state validation (CONFIRMED → CANCELLED)
+- [X] T107: Organizer authorization check (only organizer can cancel)
+- [X] T108: bookingController.cancelBooking implementation
+- [X] T109: Cancellation route DELETE /bookings/:id
+- [X] T110: NotificationService.sendBookingCancelled method
+
+#### Frontend Implementation (✅ COMPLETE - 4/4 tasks)
+
+**Cancellation UI**
+- [X] T111: CancelBookingButton component with status validation
+- [X] T112: cancelBooking method in bookingService
+- [X] T113: CancelBookingButton integrated into BookingDetailsPage (organizer only)
+- [X] T114: Cancellation confirmation modal with booking details
+
+**Status**: COMPLETE ✨
+
+**Key Features**:
+- Cancel CONFIRMED bookings via DELETE endpoint
+- Organizer authorization enforced at service layer
+- State machine validation prevents invalid cancellations
+- Cancellation notifications sent to organizer and participants
+- Reusable CancelBookingButton component with proper error handling
+- Confirmation modal displays booking details before cancellation
+- Comprehensive integration tests for cancellation flow and notifications
+
+**Checkpoint**: All user stories (1-4) are now independently functional
 
 ---
 
@@ -320,7 +346,7 @@ npm run dev
 
 ## 📁 File Structure
 
-### Backend (40+ files)
+### Backend (42+ files)
 ```
 backend/
 ├── src/
@@ -338,18 +364,18 @@ backend/
 │   ├── schema.prisma     ✅
 │   └── seed.ts           ✅
 ├── tests/
-│   ├── integration/      ✅ 3 files (vip-authorization, check-in, no-show)
+│   ├── integration/      ✅ 4 files (vip-authorization, check-in, no-show, cancellation)
 │   └── setup.ts          ✅
 ├── package.json          ✅
 ├── tsconfig.json         ✅
 └── jest.config.js        ✅
 ```
 
-### Frontend (25+ files)
+### Frontend (26+ files)
 ```
 frontend/
 ├── src/
-│   ├── components/       ✅ 4 files (ProtectedRoute, RoomCard, BookingForm, CheckInButton)
+│   ├── components/       ✅ 5 files (ProtectedRoute, RoomCard, BookingForm, CheckInButton, CancelBookingButton)
 │   ├── pages/            ✅ 6 files (Login, RoomList, Calendar, MyBookings, BookingDetails, Profile)
 │   ├── contexts/         ✅ 1 file (AuthContext)
 │   ├── services/         ✅ 5 files (api, auth, room, booking, calendar)
@@ -456,14 +482,24 @@ frontend/
 - ✅ Calendar visualization
 - ✅ Type-safe end-to-end
 - ✅ Integration tests for VIP authorization
+- ✅ CancelBookingButton component with confirmation modal
 
-**Total Lines of Code**: ~7,000+ lines across 65+ files
+**Total Lines of Code**: ~7,500+ lines across 68+ files
 
-**Development Time**: ~3 days for complete MVP with User Stories 1, 2 & 3
+**Development Time**: ~3.5 days for complete MVP with User Stories 1-4
 
 ---
 
 ## 📈 Recent Updates
+
+**2026-05-23**: Phase 6 (User Story 4) Complete
+- Booking cancellation with DELETE /bookings/:id endpoint
+- Organizer-only authorization for cancellation
+- State machine validation (only CONFIRMED bookings can be cancelled)
+- Cancellation notifications sent to all participants via email and in-app
+- CancelBookingButton component with confirmation modal
+- Integration tests for cancellation flow and notifications
+- Tasks completed: T104-T114 (11 tasks)
 
 **2026-05-23**: Phase 5 (User Story 3) Complete
 - Check-in functionality with 10-minute grace period validation

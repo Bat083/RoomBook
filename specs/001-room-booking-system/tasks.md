@@ -243,25 +243,25 @@ This is a web application with separate frontend and backend:
 
 ### Tests for User Story 4
 
-- [ ] T104 [P] [US4] Create integration test for DELETE /bookings/:id in backend/tests/integration/cancellation.test.ts
-- [ ] T105 [P] [US4] Create integration test for cancellation notifications (FR-023) in backend/tests/integration/cancellation.test.ts
+- [X] T104 [P] [US4] Create integration test for DELETE /bookings/:id in backend/tests/integration/cancellation.test.ts
+- [X] T105 [P] [US4] Create integration test for cancellation notifications (FR-023) in backend/tests/integration/cancellation.test.ts
 
 ### Implementation for User Story 4
 
 **Backend - Cancellation (FR-021, FR-022, FR-023)**
 
-- [ ] T106 [US4] Implement BookingService.cancelBooking method with state transition validation (CONFIRMED → CANCELLED)
-- [ ] T107 [US4] Implement organizer authorization check in BookingService.cancelBooking (only organizer can cancel)
-- [ ] T108 [US4] Implement bookingController.deleteBooking in backend/src/controllers/bookingController.ts
-- [ ] T109 [US4] Add cancellation route DELETE /bookings/:id in backend/src/routes/bookingRoutes.ts
-- [ ] T110 [US4] Implement NotificationService.sendBookingCancelled method
+- [X] T106 [US4] Implement BookingService.cancelBooking method with state transition validation (CONFIRMED → CANCELLED)
+- [X] T107 [US4] Implement organizer authorization check in BookingService.cancelBooking (only organizer can cancel)
+- [X] T108 [US4] Implement bookingController.deleteBooking in backend/src/controllers/bookingController.ts
+- [X] T109 [US4] Add cancellation route DELETE /bookings/:id in backend/src/routes/bookingRoutes.ts
+- [X] T110 [US4] Implement NotificationService.sendBookingCancelled method
 
 **Frontend - Cancellation UI**
 
-- [ ] T111 [P] [US4] Create CancelBookingButton component in frontend/src/components/CancelBookingButton.tsx
-- [ ] T112 [US4] Add cancelBooking method to bookingService in frontend/src/services/bookingService.ts
-- [ ] T113 [US4] Integrate CancelBookingButton into BookingDetailsPage component (show only for organizer)
-- [ ] T114 [US4] Add cancellation confirmation modal in CancelBookingButton component
+- [X] T111 [P] [US4] Create CancelBookingButton component in frontend/src/components/CancelBookingButton.tsx
+- [X] T112 [US4] Add cancelBooking method to bookingService in frontend/src/services/bookingService.ts
+- [X] T113 [US4] Integrate CancelBookingButton into BookingDetailsPage component (show only for organizer)
+- [X] T114 [US4] Add cancellation confirmation modal in CancelBookingButton component
 
 **Checkpoint**: All user stories (1-4) should now be independently functional
 
