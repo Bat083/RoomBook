@@ -47,12 +47,14 @@ import authRoutes from './routes/authRoutes';
 import roomRoutes from './routes/roomRoutes';
 import bookingRoutes from './routes/bookingRoutes';
 import calendarRoutes from './routes/calendarRoutes';
+import notificationRoutes from './routes/notificationRoutes';
 
 // Register API routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/rooms', roomRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
 app.use('/api/v1/calendar', calendarRoutes);
+app.use('/api/v1/notifications', notificationRoutes);
 
 // Error handling middleware (must be last)
 app.use(errorHandler);

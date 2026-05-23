@@ -136,6 +136,59 @@ export class NotificationService {
     );
   }
 
+  // Get user notifications with pagination (Phase 7)
+  async getUserNotifications(
+    userId: string,
+    limit: number = 20,
+    offset: number = 0,
+    unreadOnly: boolean = false
+  ): Promise<{ notifications: any[]; total: number }> {
+    const where: any = { recipientId: userId };
+
+    if (unreadOnly) {
+      where.isRead = false;
+    }
+
+    const [notifications, total] = await Promise.all([
+      prisma.notification.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+        skip: offset,
+        take: limit,
+        include: {
+          booking: {
+            include: {
+              room: true,
+            },
+          },
+        },
+      }),
+      prisma.notification.count({ where }),
+    ]);
+
+    return { notifications, total };
+  }
+
+  // Mark notification as read (Phase 7)
+  async markAsRead(notificationId: string, userId: string): Promise<void> {
+    const notification = await prisma.notification.findUnique({
+      where: { id: notificationId },
+    });
+
+    if (!notification) {
+      throw new Error('Notification not found');
+    }
+
+    if (notification.recipientId !== userId) {
+      throw new Error('Unauthorized: You can only mark your own notifications as read');
+    }
+
+    await prisma.notification.update({
+      where: { id: notificationId },
+      data: { isRead: true, readAt: new Date() },
+    });
+  }
+
   // Helper: Get all recipients (organizer + participants)
   private getRecipients(booking: any): any[] {
     const recipients = [booking.organizer];

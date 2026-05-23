@@ -163,3 +163,19 @@ export interface PaginatedResponse<T> {
   page: number;
   limit: number;
 }
+
+export interface Notification {
+  id: string;
+  recipientId: string;
+  bookingId?: string | null;
+  notificationType: string;
+  subject: string;
+  message: string;
+  isRead: boolean;
+  readAt?: string | null;
+  emailSent: boolean;
+  emailSentAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  booking?: Booking;
+}

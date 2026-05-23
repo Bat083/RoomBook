@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-05-23  
 **Branch**: 001-room-booking-system  
-**Overall Progress**: 114/147 tasks (78%)
+**Overall Progress**: 122/147 tasks (83%)
 
 ---
 
@@ -242,8 +242,32 @@
 
 ---
 
-### ⏳ Phase 7: Notifications Management (0% - 8 tasks)
-- [ ] T115-T122: Notification viewing & management
+### ✅ Phase 7: Notifications Management (100% - 8/8 tasks)
+
+**Goal**: Users can view and manage their notifications (both email and in-app)
+
+#### Backend Implementation (✅ COMPLETE - 3/3 tasks)
+- [X] T115: notificationController.getNotifications with pagination and unreadOnly filter
+- [X] T116: notificationController.markAsRead implementation
+- [X] T117: Notification routes registered in app.ts
+
+#### Frontend Implementation (✅ COMPLETE - 5/5 tasks)
+- [X] T118: NotificationList component
+- [X] T119: NotificationItem component with status icons and colors
+- [X] T120: notificationService with getNotifications, markAsRead, getUnreadCount methods
+- [X] T121: NotificationsPage with pagination and filtering
+- [X] T122: NavBar component with notification badge showing unread count
+
+**Status**: COMPLETE ✨
+
+**Key Features**:
+- Paginated notification list with unread/all filter
+- Real-time unread count badge in navigation bar
+- Color-coded notification items by type (confirmed, cancelled, rejected, penalty, reminder)
+- Click to mark as read functionality
+- Responsive notification UI with proper loading and error states
+- Auto-refresh unread count every 30 seconds
+- Notification types with appropriate icons (✅ ❌ 🚫 ⚠️ 🔔)
 
 ---
 
@@ -346,15 +370,15 @@ npm run dev
 
 ## 📁 File Structure
 
-### Backend (42+ files)
+### Backend (43+ files)
 ```
 backend/
 ├── src/
 │   ├── config/           ✅ 3 files (email, passport, session)
-│   ├── controllers/      ✅ 4 files (auth, room, booking, calendar)
+│   ├── controllers/      ✅ 5 files (auth, room, booking, calendar, notification)
 │   ├── middleware/       ✅ 4 files (auth, error, validation, rateLimit)
 │   ├── repositories/     ✅ 3 files (user, room, booking)
-│   ├── routes/           ✅ 4 files (auth, room, booking, calendar)
+│   ├── routes/           ✅ 5 files (auth, room, booking, calendar, notification)
 │   ├── services/         ✅ 5 files (booking, notification, noShowDetection, completion, stateMachine)
 │   ├── jobs/             ✅ 2 files (noShowCron, completionCron)
 │   ├── types/            ✅ 2 files (DTOs)
@@ -371,14 +395,14 @@ backend/
 └── jest.config.js        ✅
 ```
 
-### Frontend (26+ files)
+### Frontend (30+ files)
 ```
 frontend/
 ├── src/
-│   ├── components/       ✅ 5 files (ProtectedRoute, RoomCard, BookingForm, CheckInButton, CancelBookingButton)
-│   ├── pages/            ✅ 6 files (Login, RoomList, Calendar, MyBookings, BookingDetails, Profile)
+│   ├── components/       ✅ 8 files (ProtectedRoute, RoomCard, BookingForm, CheckInButton, CancelBookingButton, NavBar, NotificationList, NotificationItem)
+│   ├── pages/            ✅ 7 files (Login, RoomList, Calendar, MyBookings, BookingDetails, Profile, Notifications)
 │   ├── contexts/         ✅ 1 file (AuthContext)
-│   ├── services/         ✅ 5 files (api, auth, room, booking, calendar)
+│   ├── services/         ✅ 6 files (api, auth, room, booking, calendar, notification)
 │   ├── hooks/            ✅ 3 files (useRooms, useBookings, useCalendar)
 │   ├── types/            ✅ 1 file (index.ts)
 │   ├── App.tsx           ✅
@@ -484,13 +508,24 @@ frontend/
 - ✅ Integration tests for VIP authorization
 - ✅ CancelBookingButton component with confirmation modal
 
-**Total Lines of Code**: ~7,500+ lines across 68+ files
+**Total Lines of Code**: ~8,200+ lines across 73+ files
 
-**Development Time**: ~3.5 days for complete MVP with User Stories 1-4
+**Development Time**: ~4 days for complete MVP with User Stories 1-4 and Phase 7
 
 ---
 
 ## 📈 Recent Updates
+
+**2026-05-23**: Phase 7 (Notifications Management) Complete
+- Notification viewing with pagination and filtering (unread/all)
+- Mark as read functionality for individual notifications
+- Navigation bar with unread notification badge
+- Real-time unread count updates (auto-refresh every 30 seconds)
+- Color-coded notification items by type with icons
+- NotificationList, NotificationItem, and NavBar components
+- Backend endpoints: GET /notifications, PUT /notifications/:id/read
+- Frontend service with getNotifications, markAsRead, getUnreadCount
+- Tasks completed: T115-T122 (8 tasks)
 
 **2026-05-23**: Phase 6 (User Story 4) Complete
 - Booking cancellation with DELETE /bookings/:id endpoint

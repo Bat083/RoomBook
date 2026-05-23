@@ -9,6 +9,7 @@ import { CalendarPage } from './pages/CalendarPage';
 import { MyBookingsPage } from './pages/MyBookingsPage';
 import { BookingDetailsPage } from './pages/BookingDetailsPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { NotificationsPage } from './pages/NotificationsPage';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -64,6 +65,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/notifications"
+              element={
+                <ProtectedRoute>
+                  <NotificationsPage />
                 </ProtectedRoute>
               }
             />

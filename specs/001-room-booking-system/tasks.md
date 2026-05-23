@@ -275,14 +275,14 @@ This is a web application with separate frontend and backend:
 
 ### Implementation
 
-- [ ] T115 [P] Implement notificationController.getNotifications in backend/src/controllers/notificationController.ts with pagination and unreadOnly filter
-- [ ] T116 [P] Implement notificationController.markAsRead in backend/src/controllers/notificationController.ts
-- [ ] T117 Register notification routes in backend/src/routes/notificationRoutes.ts
-- [ ] T118 [P] Create NotificationList component in frontend/src/components/NotificationList.tsx
-- [ ] T119 [P] Create NotificationItem component in frontend/src/components/NotificationItem.tsx
-- [ ] T120 Create notificationService with getNotifications, markAsRead methods in frontend/src/services/notificationService.ts
-- [ ] T121 Create NotificationsPage in frontend/src/pages/NotificationsPage.tsx
-- [ ] T122 Add notification badge with unread count to navigation bar in frontend/src/components/NavBar.tsx
+- [X] T115 [P] Implement notificationController.getNotifications in backend/src/controllers/notificationController.ts with pagination and unreadOnly filter
+- [X] T116 [P] Implement notificationController.markAsRead in backend/src/controllers/notificationController.ts
+- [X] T117 Register notification routes in backend/src/routes/notificationRoutes.ts
+- [X] T118 [P] Create NotificationList component in frontend/src/components/NotificationList.tsx
+- [X] T119 [P] Create NotificationItem component in frontend/src/components/NotificationItem.tsx
+- [X] T120 Create notificationService with getNotifications, markAsRead methods in frontend/src/services/notificationService.ts
+- [X] T121 Create NotificationsPage in frontend/src/pages/NotificationsPage.tsx
+- [X] T122 Add notification badge with unread count to navigation bar in frontend/src/components/NavBar.tsx
 
 ---
 
