@@ -163,22 +163,22 @@ This is a web application with separate frontend and backend:
 
 ### Tests for User Story 2
 
-- [ ] T075 [P] [US2] Create integration test for VIP room authorization (FR-013) in backend/tests/integration/vip-authorization.test.ts
-- [ ] T076 [P] [US2] Create integration test for standard user VIP room rejection in backend/tests/integration/vip-authorization.test.ts
+- [X] T075 [P] [US2] Create integration test for VIP room authorization (FR-013) in backend/tests/integration/vip-authorization.test.ts
+- [X] T076 [P] [US2] Create integration test for standard user VIP room rejection in backend/tests/integration/vip-authorization.test.ts
 
 ### Implementation for User Story 2
 
 **Backend - VIP Authorization (FR-003, FR-004, FR-013)**
 
-- [ ] T077 [US2] Implement VIP room authorization check in BookingService.createBooking (before conflict detection)
-- [ ] T078 [US2] Add INSUFFICIENT_CLEARANCE error response in bookingController.createBooking
-- [ ] T079 [US2] Update RoomService.getAvailableRooms to filter by user type (VIP sees all, standard sees only normal)
+- [X] T077 [US2] Implement VIP room authorization check in BookingService.createBooking (before conflict detection)
+- [X] T078 [US2] Add INSUFFICIENT_CLEARANCE error response in bookingController.createBooking
+- [X] T079 [US2] Update RoomService.getAvailableRooms to filter by user type (VIP sees all, standard sees only normal)
 
 **Frontend - VIP Differentiation**
 
-- [ ] T080 [P] [US2] Add VIP badge to RoomCard component for VIP rooms in frontend/src/components/RoomCard.tsx
-- [ ] T081 [US2] Filter room list by user type in RoomListPage component (hide VIP rooms for standard users)
-- [ ] T082 [US2] Add INSUFFICIENT_CLEARANCE error message display in BookingForm component
+- [X] T080 [P] [US2] Add VIP badge to RoomCard component for VIP rooms in frontend/src/components/RoomCard.tsx
+- [X] T081 [US2] Filter room list by user type in RoomListPage component (hide VIP rooms for standard users)
+- [X] T082 [US2] Add INSUFFICIENT_CLEARANCE error message display in BookingForm component
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 

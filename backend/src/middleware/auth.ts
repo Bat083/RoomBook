@@ -18,7 +18,7 @@ declare global {
 }
 
 // Middleware to ensure user is authenticated
-export function isAuthenticated(req: Request, res: Response, next: NextFunction): void {
+export function isAuthenticated(req: Request, res: Response, next: NextFunction) {
   if (req.isAuthenticated()) {
     return next();
   }
@@ -30,12 +30,13 @@ export function isAuthenticated(req: Request, res: Response, next: NextFunction)
 }
 
 // Middleware to ensure user is VIP type
-export function isVIP(req: Request, res: Response, next: NextFunction): void {
+export function isVIP(req: Request, res: Response, next: NextFunction) {
   if (!req.isAuthenticated()) {
-    return res.status(401).json({
+    res.status(401).json({
       error: 'UNAUTHORIZED',
       message: 'Authentication required',
     });
+    return;
   }
 
   const user = req.user as User;

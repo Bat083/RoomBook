@@ -1,4 +1,4 @@
-import { PrismaClient, NotificationType, Booking } from '@prisma/client';
+import { PrismaClient, NotificationType } from '@prisma/client';
 import { sendEmail } from '../config/email';
 
 const prisma = new PrismaClient();

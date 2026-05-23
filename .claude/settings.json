@@ -15,7 +15,8 @@
       "Bash(git commit -m ' *)",
       "Bash(npm run *)",
       "Bash(npm list *)",
-      "Bash(powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)"
+      "Bash(powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "Bash(npm test *)"
     ]
   }
 }

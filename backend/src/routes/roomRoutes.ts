@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import * as roomController from '../controllers/roomController';
-import { isAuthenticated } from '../middleware/auth';
 
 const router = Router();
 

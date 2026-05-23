@@ -1,33 +1,8 @@
 // Shared TypeScript types for Room Booking System
 // These DTOs match the API contracts from contracts/api-endpoints.md
 
-export enum UserType {
-  STANDARD = 'STANDARD',
-  VIP = 'VIP',
-}
-
-export enum RoomType {
-  NORMAL = 'NORMAL',
-  VIP = 'VIP',
-}
-
-export enum BookingStatus {
-  REQUESTED = 'REQUESTED',
-  CONFIRMED = 'CONFIRMED',
-  IN_PROGRESS = 'IN_PROGRESS',
-  COMPLETED = 'COMPLETED',
-  REJECTED = 'REJECTED',
-  CANCELLED = 'CANCELLED',
-  NO_SHOW = 'NO_SHOW',
-}
-
-export enum NotificationType {
-  BOOKING_CONFIRMED = 'BOOKING_CONFIRMED',
-  BOOKING_REJECTED = 'BOOKING_REJECTED',
-  BOOKING_CANCELLED = 'BOOKING_CANCELLED',
-  NO_SHOW_PENALTY = 'NO_SHOW_PENALTY',
-  CHECK_IN_REMINDER = 'CHECK_IN_REMINDER',
-}
+// Export Prisma enums instead of duplicating them
+export { UserType, RoomType, BookingStatus, NotificationType } from '@prisma/client';
 
 // User DTO
 export interface UserDTO {

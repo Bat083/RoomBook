@@ -242,7 +242,7 @@ export class BookingRepository {
   async findCalendarEvents(
     startDate: Date,
     endDate: Date,
-    userId?: string,
+    _userId?: string,
     roomId?: string
   ): Promise<any[]> {
     const where: Prisma.BookingWhereInput = {

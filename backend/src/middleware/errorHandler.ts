@@ -11,8 +11,8 @@ export function errorHandler(
   err: AppError,
   req: Request,
   res: Response,
-  next: NextFunction
-): void {
+  _next: NextFunction
+) {
   // Log error for debugging
   console.error('Error:', {
     message: err.message,
@@ -24,27 +24,30 @@ export function errorHandler(
   // Prisma errors
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     if (err.code === 'P2002') {
-      return res.status(409).json({
+      res.status(409).json({
         error: 'CONFLICT',
         message: 'Resource already exists',
         details: err.meta,
       });
+      return;
     }
     if (err.code === 'P2025') {
-      return res.status(404).json({
+      res.status(404).json({
         error: 'NOT_FOUND',
         message: 'Resource not found',
       });
+      return;
     }
   }
 
   // Validation errors
   if (err.code === 'VALIDATION_ERROR') {
-    return res.status(400).json({
+    res.status(400).json({
       error: err.code,
       message: err.message,
       details: err.details,
     });
+    return;
   }
 
   // Default error response

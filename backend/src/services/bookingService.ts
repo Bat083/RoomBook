@@ -1,4 +1,4 @@
-import { PrismaClient, Booking, BookingStatus, RoomType, UserType } from '@prisma/client';
+import { PrismaClient, Prisma, Booking, BookingStatus, RoomType } from '@prisma/client';
 import { BookingRepository } from '../repositories/bookingRepository';
 import { RoomRepository } from '../repositories/roomRepository';
 import { UserRepository } from '../repositories/userRepository';
@@ -29,7 +29,7 @@ export class BookingService {
     title?: string;
     description?: string;
     participantIds?: string[];
-  }): Promise<Booking> {
+  }): Promise<Booking & { room?: any; organizer?: any; participants?: any[] }> {
     // Validate duration (FR-010, FR-011, FR-012)
     this.validateDuration(data.startTime, data.endTime);
 
@@ -52,7 +52,7 @@ export class BookingService {
 
     // Use SERIALIZABLE transaction to prevent race conditions (SC-002, FR-024)
     return await prisma.$transaction(
-      async (tx) => {
+      async (_tx) => {
         // Check for conflicts
         const conflicts = await this.bookingRepo.findConflicts(
           data.roomId,
@@ -75,7 +75,13 @@ export class BookingService {
         }
 
         // Create booking
-        const booking = await this.bookingRepo.create(data);
+        const createdBooking = await this.bookingRepo.create(data);
+
+        // Fetch booking with relations
+        const booking = await this.bookingRepo.findById(createdBooking.id);
+        if (!booking) {
+          throw createError('Booking not found after creation', 500, 'INTERNAL_ERROR');
+        }
 
         // Send notifications asynchronously (FR-015)
         this.notificationService.sendBookingConfirmation(booking).catch((error) => {

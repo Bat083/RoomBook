@@ -46,6 +46,13 @@ export async function listRooms(req: Request, res: Response, next: NextFunction)
       rooms = await roomRepo.findAll();
     }
 
+    // Filter VIP rooms for standard users (FR-003, FR-013)
+    // VIP users see all rooms, standard users only see NORMAL rooms
+    const isVIP = req.user?.userType === 'VIP';
+    if (!isVIP) {
+      rooms = rooms.filter((room) => room.roomType === RoomType.NORMAL);
+    }
+
     // Map to DTOs
     const roomDTOs: RoomDTO[] = rooms.map((room) => ({
       id: room.id,
@@ -75,6 +82,13 @@ export async function getRoomById(req: Request, res: Response, next: NextFunctio
 
     if (!room) {
       throw createError(`Room with ID ${id} does not exist`, 404, 'ROOM_NOT_FOUND');
+    }
+
+    // Filter VIP rooms for standard users (FR-003, FR-013)
+    // Standard users cannot access VIP room details - return 404 to hide existence
+    const isVIP = req.user?.userType === 'VIP';
+    if (!isVIP && room.roomType === RoomType.VIP) {
+      throw createError('Room not found', 404, 'ROOM_NOT_FOUND');
     }
 
     const roomDTO: RoomDTO = {

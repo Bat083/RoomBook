@@ -56,12 +56,13 @@ export function logout(req: Request, res: Response, next: NextFunction): void {
 }
 
 // GET /auth/me
-export function getCurrentUser(req: Request, res: Response): void {
+export function getCurrentUser(req: Request, res: Response) {
   if (!req.user) {
-    return res.status(401).json({
+    res.status(401).json({
       error: 'UNAUTHORIZED',
       message: 'Authentication required',
     });
+    return;
   }
 
   const userDTO: UserDTO = {
