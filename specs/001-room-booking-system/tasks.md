@@ -294,11 +294,11 @@ This is a web application with separate frontend and backend:
 
 ### Implementation
 
-- [ ] T123 [P] Implement HealthCheckService in backend/src/services/healthCheckService.ts with uptime tracking
-- [ ] T124 [P] Create external monitoring integration service in backend/src/services/monitoringService.ts (UptimeRobot API client)
-- [ ] T125 Update NoShowDetectionService to query monitoring service for recent downtime before marking NO_SHOW
-- [ ] T126 Add grace period extension logic to NoShowDetectionService.detectNoShows
-- [ ] T127 Create integration test for power outage grace period extension in backend/tests/integration/power-outage.test.ts
+- [X] T123 [P] Implement HealthCheckService in backend/src/services/healthCheckService.ts with uptime tracking
+- [X] T124 [P] Create external monitoring integration service in backend/src/services/monitoringService.ts (UptimeRobot API client)
+- [X] T125 Update NoShowDetectionService to query monitoring service for recent downtime before marking NO_SHOW
+- [X] T126 Add grace period extension logic to NoShowDetectionService.detectNoShows
+- [X] T127 Create integration test for power outage grace period extension in backend/tests/integration/power-outage.test.ts
 
 ---
 

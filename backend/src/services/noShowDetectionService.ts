@@ -1,11 +1,12 @@
 import { BookingRepository } from '../repositories/bookingRepository';
 import { UserRepository } from '../repositories/userRepository';
 import { NotificationService } from './notificationService';
+import { getMonitoringService } from './monitoringService';
 import { BookingStatus } from '@prisma/client';
 
 /**
  * NoShowDetectionService handles automatic no-show detection for bookings
- * where users fail to check in within the grace period (FR-019, FR-020)
+ * where users fail to check in within the grace period (FR-019, FR-020, EC-002)
  */
 export class NoShowDetectionService {
   private bookingRepo: BookingRepository;
@@ -21,7 +22,48 @@ export class NoShowDetectionService {
   }
 
   /**
-   * Detect and process no-shows for bookings past grace period
+   * Calculate effective grace period for a booking, accounting for power outages (EC-002)
+   * @param booking - The booking to check
+   * @returns Extended grace period in minutes
+   */
+  private async calculateEffectiveGracePeriod(booking: any): Promise<number> {
+    const monitoringService = getMonitoringService();
+
+    if (!monitoringService.isConfigured()) {
+      // No external monitoring configured, use standard grace period
+      return this.gracePeriodMinutes;
+    }
+
+    try {
+      // Check for downtime affecting the booking's check-in window
+      const bookingStartTime = new Date(booking.startTime);
+      const downtimeSeconds = await monitoringService.getDowntimeAffectingWindow(
+        bookingStartTime,
+        this.gracePeriodMinutes
+      );
+
+      if (downtimeSeconds > 0) {
+        const downtimeMinutes = Math.ceil(downtimeSeconds / 60);
+        const extendedGracePeriod = this.gracePeriodMinutes + downtimeMinutes;
+
+        console.log(
+          `[NoShowDetection] Extended grace period for booking ${booking.id} by ${downtimeMinutes} minutes due to power outage`
+        );
+
+        return extendedGracePeriod;
+      }
+    } catch (error) {
+      console.error(
+        `[NoShowDetection] Failed to check downtime for booking ${booking.id}, using standard grace period:`,
+        error
+      );
+    }
+
+    return this.gracePeriodMinutes;
+  }
+
+  /**
+   * Detect and process no-shows for bookings past grace period (with power outage handling)
    * @returns Number of bookings marked as no-show
    */
   async detectNoShows(): Promise<number> {
@@ -34,6 +76,22 @@ export class NoShowDetectionService {
 
     for (const booking of pendingBookings) {
       try {
+        // Calculate effective grace period accounting for power outages (EC-002)
+        const effectiveGracePeriod = await this.calculateEffectiveGracePeriod(booking);
+
+        // Check if booking is truly past the extended grace period
+        const bookingStartTime = new Date(booking.startTime);
+        const graceEndTime = new Date(bookingStartTime.getTime() + effectiveGracePeriod * 60 * 1000);
+        const now = new Date();
+
+        if (now < graceEndTime) {
+          // Still within extended grace period, skip
+          console.log(
+            `[NoShowDetection] Booking ${booking.id} is within extended grace period (${effectiveGracePeriod} minutes), skipping`
+          );
+          continue;
+        }
+
         // Mark booking as NO_SHOW
         await this.bookingRepo.updateStatus(booking.id, BookingStatus.NO_SHOW);
 

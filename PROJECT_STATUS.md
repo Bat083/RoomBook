@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-05-23  
 **Branch**: 001-room-booking-system  
-**Overall Progress**: 122/147 tasks (83%)
+**Overall Progress**: 127/147 tasks (86%)
 
 ---
 
@@ -271,8 +271,27 @@
 
 ---
 
-### ⏳ Phase 8: Power Outage Grace Period (0% - 5 tasks)
-- [ ] T123-T127: Downtime detection & grace period extension
+### ✅ Phase 8: Power Outage Grace Period Extension (100% - 5/5 tasks)
+
+**Goal**: System detects power outages and extends no-show grace periods accordingly
+
+#### Implementation (✅ COMPLETE - 5/5 tasks)
+- [X] T123: HealthCheckService with uptime tracking
+- [X] T124: External monitoring integration (UptimeRobot API client)
+- [X] T125: NoShowDetectionService queries monitoring service for downtime
+- [X] T126: Grace period extension logic in NoShowDetectionService.detectNoShows
+- [X] T127: Integration test for power outage grace period extension
+
+**Status**: COMPLETE ✨
+
+**Key Features**:
+- HealthCheckService tracks system uptime and database connectivity
+- MonitoringService integrates with UptimeRobot API for downtime detection
+- Automatic grace period extension based on detected downtime
+- No false NO_SHOW transitions during power outages
+- Graceful fallback when monitoring not configured
+- Comprehensive integration tests with mocked monitoring service
+- Optional configuration via environment variables (UPTIME_ROBOT_API_KEY, UPTIME_ROBOT_MONITOR_ID)
 
 ---
 
@@ -370,7 +389,7 @@ npm run dev
 
 ## 📁 File Structure
 
-### Backend (43+ files)
+### Backend (46+ files)
 ```
 backend/
 ├── src/
@@ -379,7 +398,7 @@ backend/
 │   ├── middleware/       ✅ 4 files (auth, error, validation, rateLimit)
 │   ├── repositories/     ✅ 3 files (user, room, booking)
 │   ├── routes/           ✅ 5 files (auth, room, booking, calendar, notification)
-│   ├── services/         ✅ 5 files (booking, notification, noShowDetection, completion, stateMachine)
+│   ├── services/         ✅ 7 files (booking, notification, noShowDetection, completion, stateMachine, healthCheck, monitoring)
 │   ├── jobs/             ✅ 2 files (noShowCron, completionCron)
 │   ├── types/            ✅ 2 files (DTOs)
 │   ├── app.ts            ✅
@@ -388,7 +407,7 @@ backend/
 │   ├── schema.prisma     ✅
 │   └── seed.ts           ✅
 ├── tests/
-│   ├── integration/      ✅ 4 files (vip-authorization, check-in, no-show, cancellation)
+│   ├── integration/      ✅ 5 files (vip-authorization, check-in, no-show, cancellation, power-outage)
 │   └── setup.ts          ✅
 ├── package.json          ✅
 ├── tsconfig.json         ✅
@@ -508,13 +527,25 @@ frontend/
 - ✅ Integration tests for VIP authorization
 - ✅ CancelBookingButton component with confirmation modal
 
-**Total Lines of Code**: ~8,200+ lines across 73+ files
+**Total Lines of Code**: ~8,600+ lines across 76+ files
 
-**Development Time**: ~4 days for complete MVP with User Stories 1-4 and Phase 7
+**Development Time**: ~4.5 days for complete MVP with User Stories 1-4, Phase 7-8
 
 ---
 
 ## 📈 Recent Updates
+
+**2026-05-23**: Phase 8 (Power Outage Grace Period Extension) Complete
+- Power outage detection with UptimeRobot API integration
+- HealthCheckService tracks system uptime and database connectivity
+- MonitoringService fetches downtime incidents from external monitor
+- Automatic grace period extension for no-show detection during outages
+- Integration test suite with mocked monitoring service
+- Optional configuration (works without monitoring if not configured)
+- Updated health check endpoint with comprehensive status
+- Backend services: healthCheckService.ts, monitoringService.ts
+- Environment variables: UPTIME_ROBOT_API_KEY, UPTIME_ROBOT_MONITOR_ID
+- Tasks completed: T123-T127 (5 tasks)
 
 **2026-05-23**: Phase 7 (Notifications Management) Complete
 - Notification viewing with pagination and filtering (unread/all)
